@@ -2,6 +2,55 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+## About PID Controller
+
+A proportional–integral–derivative controller (PID controller or three-term controller) is a control loop feedback mechanism widely used in industrial control systems and a variety of other applications requiring continuously modulated control. A PID controller continuously calculates an error value {\displaystyle e(t)} e(t) as the difference between a desired setpoint (SP) and a measured process variable (PV) and applies a correction based on proportional, integral, and derivative terms (denoted P, I, and D respectively), hence the name.[wikipedia](https://en.wikipedia.org/wiki/PID_controller)
+
+Kp is the proportional gain. Ki is the intergral gain. Kp is the derivative gain. these are three tuning parameters.
+
+Kp: It plays the most obvious role in the entire controller. Increasing it, the more aggressive the adjustment effect on the entire controller, reducing it will make its regulation more conservative.
+
+Ki: The role of this parameter is to reduce the error in the static case, so that the controlled physical quantity is as close as possible to the target value.
+
+Kd: The role of this parameter is to make the rate of change of the controlled physical quantity tend to zero.
+
+## Effect of each parameter
+
+No.|Kp|Ki|Kd|Effect
+--|--|--|--|--
+1|1|0|0|Change very quickly, but will fail in the first corner.
+2|0.5|0|0|The change is reduced, the distance traveled has increased, but it has quickly failed.
+3|0.1|0|0|Driving further, it is difficult to control the vehicle after a long distance.
+4|0.01|0|0|The vehicle is turning very slowly.
+
+The above is the test of the parameter Kp. It was found that as the Kp value decreases, the sensitivity of the steering decreases.
+
+No.|Kp|Ki|Kd|Effect
+--|--|--|--|--
+1|0.1|1|0|Can't drive.
+2|0.1|0.1|0|Can't drive.
+3|0.1|0.001|0|The effect of the vehicle's initial control is apparent, but the performance is very bad.
+4|0.1|0.0001|0|Can drive to the first corner, but after entering the corner, the steering control is not effective.
+
+The above is the test of the parameter Ki. The smaller the value, the better.
+
+No.|Kp|Ki|Kd|Effect
+--|--|--|--|--
+1|0|0|1|No change in steering value.
+2|0.1|0|1|The vehicle can barely run a full circle, but it is still out of the lane at the corner of the sand.
+3|0.1|0|5|Better than No.2.
+4|0.1|0|10|Better than No.3. The vehicle can pass the corner in the track.
+
+The above is the test of the parameter Kd. The bigger the value, the better.
+
+No.|Kp|Ki|Kd|Effect
+--|--|--|--|--
+1|0.1|0.0001|10|The right corner after the sand will overwhelm the roadside.
+2|0.3|0.0001|10|Goal achieved.
+3|0.3|0.0001|20|Goal achieved. But the performance was worse than No.2.
+
+The project goal has been achieved. But the adjustment of these three parameters needs further study. In this project, the effects of the two parameters Kp and Kd are more intuitive, and the performance of the Ki parameter is difficult to observe directly from the simulator.
+
 
 ## Dependencies
 
